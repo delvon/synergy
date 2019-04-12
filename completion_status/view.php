@@ -76,10 +76,12 @@ if ($results = $DB->get_records_sql($sql)) {
             $userdate
         );
     }
+    //Add a nice Moodle box to put the table in
     echo $OUTPUT->box_start('generalbox boxaligncenter boxwidthwide');
     echo html_writer::table($table);
     echo $OUTPUT->box_end();
 } else {
+    //If no course even tracking completion then notify nothing to show
     echo $OUTPUT->notification(get_string('nothingtoshow', 'local_completion_status'));
 }
 echo $OUTPUT->footer();

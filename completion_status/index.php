@@ -36,6 +36,7 @@ if (!is_siteadmin()) {
     print_error('nopermission', 'local_completion_status');
     die();
 }
+//Retrieve the users from DB and create table
 if ($users = $DB->get_records('user', array('deleted' => 0), 'id,firstname,lastname,email')) {
     $table = new html_table();
     $table->width = "95%";
@@ -48,10 +49,12 @@ if ($users = $DB->get_records('user', array('deleted' => 0), 'id,firstname,lastn
             $u->email,
         );
     }
+    //Add a nice Moodle box to put the table in
     echo $OUTPUT->box_start('generalbox boxaligncenter boxwidthwide');
     echo html_writer::table($table);
     echo $OUTPUT->box_end();
 } else {
+    //In case no active users on the site then notify. Although it's a user on the page now
     echo $OUTPUT->notification(get_string('nousers', 'local_completion_status'));
 }
 echo $OUTPUT->footer();
