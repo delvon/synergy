@@ -1,0 +1,2 @@
+# synergy
+Test plugin
